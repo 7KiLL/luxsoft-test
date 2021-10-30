@@ -1,0 +1,9 @@
+src/Luxsoft.Console/bin/
+src/Luxsoft.Console/obj/
+src/Luxsoft.Library/bin/
+src/Luxsoft.Library/obj/
+tests/Luxsoft.Tests/bin/
+tests/Luxsoft.Tests/obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
