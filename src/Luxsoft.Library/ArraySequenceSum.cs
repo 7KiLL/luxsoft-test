@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Luxsoft.Library
@@ -26,18 +27,35 @@ namespace Luxsoft.Library
 
         public int[] GetResultAsArray()
         {
-            return _sequence.Where(x =>
-            {
-                return x.ToString()
-                    .Select(c => int.Parse(c.ToString()))
+            return _sequence
+                .Where(x => IntToArray(x)
                     .Sum()
-                    .Equals(_sum);
-            }).ToArray();
+                    .Equals(_sum)
+                )
+                .ToArray();
         }
 
         private int[] CreateSequence(int min, int max)
         {
             return Enumerable.Range(min, count: max - min + 1).ToArray();
+        }
+
+        /// <summary>
+        /// Method can be found at <a href="https://stackoverflow.com/a/4808815">StackOverflow</a>
+        /// </summary>
+        /// <param name="number">An integer to be parsed</param>
+        /// <returns>Array of integer digits</returns>
+        private IEnumerable<int> IntToArray(int number)
+        {
+            List<int> digits = new List<int>();
+            while (number > 0)
+            {
+                digits.Add(number % 10);
+                number /= 10;
+            }
+
+            digits.Reverse();
+            return digits.ToArray();
         }
     }
 }
